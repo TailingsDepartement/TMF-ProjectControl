@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="mapbox/mapbox-gl.css">
+        <link rel="stylesheet" href="css/qgis2web.css">
+        <link rel="stylesheet" href="mapbox/mapbox-gl-generic-geocoder.css">
+        <style>
+        #map {
+            width: 1564px;
+            height: 838px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+            <nav id="menu"></nav>
+              <div id="distance" class="distance-container"></div>
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="./mapbox/mapbox-gl.js"></script>
+        <script src="mapbox/mapbox-gl-generic-geocoder.min.js"></script>
+        <script src="data/Joinedlayer_1.js"></script>
+<script src="./mapbox/style.js"></script>
+<script src="./js/Autolinker.min.js"></script>
+<script>
+var map = new mapboxgl.Map({
+ container: 'map',
+ style: styleJSON,
+ center: [99.06279430275745,1.5045021664900533],
+ zoom: 14,
+ bearing: 360.0,
+ attributionControl: false
+});
+map.addControl(new mapboxgl.NavigationControl(), 'top-left');
+map.addControl(new mapboxgl.AttributionControl({
+    customAttribution: '<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://github.com/mapbox/mapbox-gl-js" target="_blank">Mapbox GL JS</a> &middot; <a href="https://qgis.org" target="_blank">QGIS</a>',
+    compact: false
+}));
+var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+
+map.on('click', 'lyr_Joinedlayer_1_0', function (e) {
+    var description = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['fid'] !== null ? autolinker.link(e.features[0].properties['fid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['id'] !== null ? autolinker.link(e.features[0].properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Project</th>\
+                        <td>' + (e.features[0].properties['Project'] !== null ? autolinker.link(e.features[0].properties['Project'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Area</th>\
+                        <td>' + (e.features[0].properties['Area'] !== null ? autolinker.link(e.features[0].properties['Area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Progress Plan</strong><br />' + (e.features[0].properties['Progress Plan'] !== null ? autolinker.link(e.features[0].properties['Progress Plan'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['Progress Aktual'] !== null ? autolinker.link(e.features[0].properties['Progress Aktual'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['Cost Aktual'] !== null ? autolinker.link(e.features[0].properties['Cost Aktual'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['layer'] !== null ? autolinker.link(e.features[0].properties['layer'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['path'] !== null ? autolinker.link(e.features[0].properties['path'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['Budget Aktual'] !== null ? autolinker.link(e.features[0].properties['Budget Aktual'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['Budget Total'] !== null ? autolinker.link(e.features[0].properties['Budget Total'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['id_2'] !== null ? autolinker.link(e.features[0].properties['id_2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['Project_2'] !== null ? autolinker.link(e.features[0].properties['Project_2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['Area_2'] !== null ? autolinker.link(e.features[0].properties['Area_2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['Budget Total_2'] !== null ? autolinker.link(e.features[0].properties['Budget Total_2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['Budget Actual'] !== null ? autolinker.link(e.features[0].properties['Budget Actual'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['4-May'] !== null ? autolinker.link(e.features[0].properties['4-May'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['11-May'] !== null ? autolinker.link(e.features[0].properties['11-May'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['18-May'] !== null ? autolinker.link(e.features[0].properties['18-May'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['25-May'] !== null ? autolinker.link(e.features[0].properties['25-May'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['2-Jun'] !== null ? autolinker.link(e.features[0].properties['2-Jun'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['9-Jun'] !== null ? autolinker.link(e.features[0].properties['9-Jun'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['11-Jun'] !== null ? autolinker.link(e.features[0].properties['11-Jun'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['18-Jun'] !== null ? autolinker.link(e.features[0].properties['18-Jun'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['25-Jun'] !== null ? autolinker.link(e.features[0].properties['25-Jun'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['2-Jul'] !== null ? autolinker.link(e.features[0].properties['2-Jul'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['9-Jul'] !== null ? autolinker.link(e.features[0].properties['9-Jul'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['16-Jul'] !== null ? autolinker.link(e.features[0].properties['16-Jul'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['23-Jul'] !== null ? autolinker.link(e.features[0].properties['23-Jul'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['30-Jul'] !== null ? autolinker.link(e.features[0].properties['30-Jul'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['6-Aug'] !== null ? autolinker.link(e.features[0].properties['6-Aug'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['13-Aug'] !== null ? autolinker.link(e.features[0].properties['13-Aug'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['20-Aug'] !== null ? autolinker.link(e.features[0].properties['20-Aug'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['27-Aug'] !== null ? autolinker.link(e.features[0].properties['27-Aug'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['3-Sep'] !== null ? autolinker.link(e.features[0].properties['3-Sep'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['10-Sep'] !== null ? autolinker.link(e.features[0].properties['10-Sep'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['17-Sep'] !== null ? autolinker.link(e.features[0].properties['17-Sep'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['24-Sep'] !== null ? autolinker.link(e.features[0].properties['24-Sep'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['1-Oct'] !== null ? autolinker.link(e.features[0].properties['1-Oct'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['8-Oct'] !== null ? autolinker.link(e.features[0].properties['8-Oct'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['15-Oct'] !== null ? autolinker.link(e.features[0].properties['15-Oct'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['22-Oct'] !== null ? autolinker.link(e.features[0].properties['22-Oct'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['29-Oct'] !== null ? autolinker.link(e.features[0].properties['29-Oct'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['5-Nov'] !== null ? autolinker.link(e.features[0].properties['5-Nov'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['12-Nov'] !== null ? autolinker.link(e.features[0].properties['12-Nov'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['19-Nov'] !== null ? autolinker.link(e.features[0].properties['19-Nov'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['26-Nov'] !== null ? autolinker.link(e.features[0].properties['26-Nov'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['3-Dec'] !== null ? autolinker.link(e.features[0].properties['3-Dec'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['10-Dec'] !== null ? autolinker.link(e.features[0].properties['10-Dec'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['17-Dec'] !== null ? autolinker.link(e.features[0].properties['17-Dec'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['24-Dec'] !== null ? autolinker.link(e.features[0].properties['24-Dec'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['31-Dec'] !== null ? autolinker.link(e.features[0].properties['31-Dec'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['7-Jan'] !== null ? autolinker.link(e.features[0].properties['7-Jan'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['14-Jan'] !== null ? autolinker.link(e.features[0].properties['14-Jan'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['21-Jan'] !== null ? autolinker.link(e.features[0].properties['21-Jan'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['4-May_1'] !== null ? autolinker.link(e.features[0].properties['4-May_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['11-May_1'] !== null ? autolinker.link(e.features[0].properties['11-May_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['18-May_1'] !== null ? autolinker.link(e.features[0].properties['18-May_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['25-May_1'] !== null ? autolinker.link(e.features[0].properties['25-May_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['2-Jun_1'] !== null ? autolinker.link(e.features[0].properties['2-Jun_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['9-Jun_1'] !== null ? autolinker.link(e.features[0].properties['9-Jun_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['11-Jun_1'] !== null ? autolinker.link(e.features[0].properties['11-Jun_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['18-Jun_1'] !== null ? autolinker.link(e.features[0].properties['18-Jun_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['25-Jun_1'] !== null ? autolinker.link(e.features[0].properties['25-Jun_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['2-Jul_1'] !== null ? autolinker.link(e.features[0].properties['2-Jul_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['9-Jul_1'] !== null ? autolinker.link(e.features[0].properties['9-Jul_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['16-Jul_1'] !== null ? autolinker.link(e.features[0].properties['16-Jul_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['23-Jul_1'] !== null ? autolinker.link(e.features[0].properties['23-Jul_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>'
+
+    new mapboxgl.Popup()
+        .setLngLat(e.lngLat)
+        .setHTML(description)
+        .addTo(map);
+});
+
+// Change the cursor to a pointer when the mouse is over the places layer.
+map.on('mouseenter', 'lyr_Joinedlayer_1_0', function () {
+    map.getCanvas().style.cursor = 'pointer';
+});
+
+// Change it back to a pointer when it leaves.
+map.on('mouseleave', 'lyr_Joinedlayer_1_0', function () {
+    map.getCanvas().style.cursor = '';
+});
+    var toggleableLayerIds = ['lyr_Joinedlayer_1_0', 'Joined layer','lyr_GoogleSatellite_0_0', 'Google Satellite'];
+
+    for (var i = 0; i < toggleableLayerIds.length; i=i+2) {
+        var id = toggleableLayerIds[i];
+        var layerName = toggleableLayerIds[i+1]
+
+        var link = document.createElement('a');
+        link.href = '#';
+        link.className = 'active';
+        link.layer = id;
+        link.textContent = layerName;
+
+        link.onclick = function (e) {
+            var clickedLayer = this.layer;
+            e.preventDefault();
+            e.stopPropagation();
+
+            var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+
+            if (typeof visibility === 'undefined' || visibility == 'visible') {
+                map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+                this.className = '';
+            } else {
+                this.className = 'active';
+                map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+            }
+        };
+
+        var layers = document.getElementById('menu');
+        layers.appendChild(link);
+    }
+        var geocodeNominatimRequest = function(query, mapBounds, options) {
+        var params = { format: "json", q: query, limit: options.limit };
+        var urlParams = new URLSearchParams(Object.entries(params));
+
+        return fetch("http://nominatim.openstreetmap.org/search?" + urlParams)
+            .then(function(response) {
+                if(response.ok) {
+                    return response.json();
+                } else {
+                    return [];
+                }
+            }).then(function(json) {
+                return json.map(function(result) {
+                    return {
+                        name: result.display_name,
+                        lat: result.lat,
+                        lon: result.lon,
+                        bbox: [result.boundingbox[2], result.boundingbox[0],
+                               result.boundingbox[3], result.boundingbox[1]]
+                    };
+                });
+            });
+        };
+
+        map.addControl(new MapboxGenericGeocoder({}, geocodeNominatimRequest));
+</script>
+        <script>
+        map.addControl(
+            new mapboxgl.GeolocateControl({
+                positionOptions: {
+                    enableHighAccuracy: true
+                },
+                trackUserLocation: true
+            })
+        );
+        </script>
+    </body>
+</html>
